@@ -22,7 +22,7 @@ img{
 `
 
 const Logo = () => {
-    const footPrintImg = `/images/Black_Cat${useColorModeValue('','-dark')}.png`
+    const footPrintImg = `/images/black_cat${useColorModeValue('','-dark')}.png`
 
     return (
         <Link href="/">
