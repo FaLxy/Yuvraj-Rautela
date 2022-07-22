@@ -12,16 +12,17 @@ export const RoomSpinner = () => (
   />
 )
 
+// eslint-disable-next-line react/display-name
 export const RoomContainer = forwardRef(({children}, ref) => (
   <Box 
     ref={ref} 
-    className='voxel-room' 
+    className="voxel-room" 
     m="auto" 
     paddingTop={['0px','0px','0px']}
     mt={['0px','0px','0px']}
     mb={['-220px', '-340px', '-450px']}
-    w={[480,640,800]}
-    h={[480,640,800]}
+    w={[480, 640, 800]}
+    h={[480, 640, 800]}
     position="relative"
     >
       {children}
