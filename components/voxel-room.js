@@ -1,25 +1,24 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import {Box,Spinner} from '@chakra-ui/react'
-
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from '../lib/model'
+import { RoomSpinner, RoomContainer} from './voxel-room-loader'
 
 function easeOutCirc(x) {
     return Math.sqrt(1 - Math.pow(x - 1, 4))
   }
 
-  const VoxelRoom = () => {
+    const VoxelRoom = () => {
     const refContainer = useRef()
     const [loading, setLoading] = useState(true)
     const [renderer, setRenderer] = useState()
     const [_camera, setCamera] = useState()
-    const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0))
+    const [target] = useState(new THREE.Vector3(35,-20,0))
     const [initialCameraPosition] = useState(
         new THREE.Vector3(
-          20 * Math.sin(0.2 * Math.PI),
-          10,
-          20 * Math.cos(0.2 * Math.PI)
+          100 * Math.sin(0.2 * Math.PI),
+          50,
+          100 * Math.cos(0.2 * Math.PI)
         )
       )
     const [scene] = useState(new THREE.Scene())
@@ -51,16 +50,17 @@ function easeOutCirc(x) {
       renderer.outputEncoding = THREE.sRGBEncoding
       container.appendChild(renderer.domElement)
       setRenderer(renderer)
-      // 640 -> 240
-      // 8   -> 6
-      const scale = scH * 0.005 + 4.8
+
+
+
+      const scale = scH * 0.025 + 60
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
         scale,
         -scale,
-        0.01,
-        50000
+        1,
+        5000
       )
       camera.position.copy(initialCameraPosition)
       camera.lookAt(target)
@@ -74,7 +74,7 @@ function easeOutCirc(x) {
       controls.target = target
       setControls(controls)
 
-      loadGLTFModel(scene, '/Room.glb', {
+      loadGLTFModel(scene, '/model.gltf', {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
@@ -86,15 +86,14 @@ function easeOutCirc(x) {
       let frame = 0
       const animate = () => {
         req = requestAnimationFrame(animate)
-
-        
+   
         frame = frame <= 100 ? frame + 1 : frame
 
         if (frame <= 100) {
           const p = initialCameraPosition
           const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20
 
-          camera.position.y = 10
+          camera.position.y = 0
           camera.position.x =
             p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed)
           camera.position.z =
@@ -120,34 +119,12 @@ function easeOutCirc(x) {
     return () => {
       window.removeEventListener('resize', handleWindowResize, false)
     }
-     }, [renderer, handleWindowResize])
+  }, [renderer, handleWindowResize])
 
-    return <Box 
-    ref={refContainer} 
-    className='voxel-room' 
-    m='auto' 
-    mt={['-20px','-60px','-120px']}
-    mb={['-40px', '-140px', '-200px']}
-    w={[280,480,640]}
-    h={[280,480,640]}
-    position="relative"
-    >
-        {[loading && (
-            <Spinner 
-            size="xl" 
-            position="relative" 
-            left="50%" 
-            top="50%" 
-            ml="calc(0px - var(--spinner-size)/2)" 
-            mt="calc(0px - var(--spinner-size))" 
-            />
-        )]}
-    </Box>
+    return (
+      <RoomContainer ref={refContainer}>{loading && <RoomSpinner />}</RoomContainer>
+    )
   }
 
-
-
-
-
-
 export default VoxelRoom
+

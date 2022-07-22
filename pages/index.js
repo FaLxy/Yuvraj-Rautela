@@ -19,13 +19,14 @@ img{
     transition: all .2s ease-in-out;
 }
 &:hover img{
-    transform: scale(1.2) rotate(5deg);
-}`
+    transform: scale(3) rotate(5deg);
+}
+&:c`
 //#1b252a
 const Page = () => {
     return(
         <Layout>
-        <Container maxW='container.lg' p={2}>
+        <Container maxW='container.md' p={2} style = {{backdropFilter:'blur(5px'}}>
           <Box borderRadius="lg" bg={useColorModeValue('whiteAlpha.500','whiteAlpha.200')} p={3} mb ={6} align="center">
           नमस्ते, I&apos;m a Web Developer and Music Producer from Dehradun!
             </Box>  
@@ -47,7 +48,7 @@ const Page = () => {
             </Box>
 
         <Section delay={0.1}>
-            <Heading as="h3" size='md' varaint='section-title'>
+            <Heading as="h3" size='md' variant='section-title'>
                 Work
             </Heading>
             <Paragraph>Yuvraj Rautela is a Freelance Web Developer and a Music Producer based in Dehradun.

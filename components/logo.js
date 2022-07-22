@@ -11,6 +11,7 @@ align-items: center;
 height: 30px;
 line-height: 20px;
 padding: 10px;
+padding-top: 21px;
 img{
     transition: all 0.2s ease-in-out;
 }

@@ -2,14 +2,14 @@ import { Container, Heading, SimpleGrid, Divider } from "@chakra-ui/react";
 import Section from "../components/section";
 import { WorkGridItem } from "../components/grid-item";
 import Layout from "../components/layouts/article";
+
 import thumbDrishti from '../public/images/Work/drishti.png';
 import thumbPong from '../public/images/Work/Pong.png';
-import thumbSwiggy from '../public/images/Work/SwiggyClone.png';
+import thumbZomato from '../public/images/Work/Zomato.png';
 import thumbMicro from '../public/images/Work/MicroClone.png';
-const Works = () => {
-    return(
+const Works = () => (
         <Layout>
-        <Container>
+        <Container maxW="container.md" style = {{backdropFilter:'blur(5px'}}>
             <Heading as="h3" fontSize={20} mb={4}>
                 Works
             </Heading>
@@ -25,8 +25,8 @@ const Works = () => {
                     </WorkGridItem>
                 </Section>
                 <Section>
-                    <WorkGridItem id="Swiggy" title="Swiggy" thumbnail={thumbSwiggy}>
-                    A simple Swiggy Clone, to order your favourite food.
+                    <WorkGridItem id="Zomato" title="Zomato" thumbnail={thumbZomato}>
+                    A simple Zomato Clone, to order your favourite food.
                     </WorkGridItem>
                 </Section>
                 <Section>
@@ -38,6 +38,6 @@ const Works = () => {
         </Container>
         </Layout>
     )
-}
+
 
 export default Works
