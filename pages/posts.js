@@ -2,9 +2,6 @@ import { Box, Container, Heading, SimpleGrid } from "@chakra-ui/react"
 import Layout from "../components/layouts/article"
 import Section from "../components/section"
 import { GridItem } from "../components/grid-item" 
-import styled from "@emotion/styled"
-
-import thumbWhy from '../public/images/Work/SoundCloudReadyForWar.png'
 import thumbSound from '../public/images/Work/SoundCloud.png'
 
 
